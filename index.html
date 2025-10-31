@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio Tourism — Meghalaya</title>
+  <meta name="description" content="Immerse yourself in the sounds, stories, and spirit of Meghalaya through curated audio experiences">
+
+  <!-- Typography & Icons -->
+  <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* =========================
+       DESIGN SYSTEM - GREEN THEME
+    ========================== */
+    :root {
+      --primary: #0b0f19;
+      --secondary: #1a2332;
+      --accent: #6caa23;
+      --accent-light: #8bc34a;
+      --accent-dark: #4a7c1a;
+      --text: #ffffff;
+      --text-light: #e4e4e4;
+      --text-muted: #b0b0b0;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --transition: all 0.3s ease;
+      --border-radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Satoshi', 'Inter', 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 6rem;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(108, 170, 35, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(26, 35, 50, 0.2) 0%, transparent 50%);
+      z-index: 0;
+      animation: bgShift 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 2rem 1.5rem;
+      z-index: 2;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      background: var(--glass-bg);
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .logo i {
+      font-size: 2.5rem;
+      color: var(--accent);
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .tagline {
+      display: inline-block;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 50px rgba(108, 170, 35, 0.2);
+    }
+
+    .card-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+
+    .card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(11, 15, 25, 0.95), rgba(11, 15, 25, 0.4) 60%, transparent);
+      padding: 1.5rem;
+      padding-top: 3rem;
+    }
+
+    .card h3 {
+      color: var(--text-light);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .audio-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .audio-btn {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .audio-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(108, 170, 35, 0.3);
+    }
+
+    .audio-btn.playing {
+      background: var(--accent-dark);
+      color: white;
+      box-shadow: 0 0 12px rgba(108, 170, 35, 0.5);
+    }
+
+    .audio-btn.loading {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .audio-btn.loading::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 12px;
+      outline: none;
+    }
+
+    audio::-webkit-media-controls-panel {
+      background: var(--glass-bg);
+    }
+
+    audio::-webkit-media-controls-play-button {
+      background-color: var(--accent);
+      border-radius: 50%;
+    }
+
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .player-info i {
+      color: var(--accent);
+    }
+
+    /* Currently Playing Bar - Enhanced with Close Button */
+    .currently-playing {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      max-width: 90%;
+      width: 450px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .currently-playing.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .currently-playing img {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .current-track-info {
+      flex-grow: 1;
+    }
+
+    .current-track-info h4 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: var(--text-light);
+    }
+
+    .current-track-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .current-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .current-controls button {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .current-controls button:hover {
+      background: rgba(108, 170, 35, 0.1);
+      color: var(--accent-light);
+    }
+
+    .close-btn {
+      color: var(--text-muted) !important;
+      font-size: 1rem !important;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: var(--text) !important;
+    }
+
+    /* Progress bar for audio */
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    footer {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 2rem 0 1rem;
+      width: 100%;
+      border-top: 1px solid var(--glass-border);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      p.subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .audio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .card-image {
+        height: 200px;
+      }
+      
+      .currently-playing {
+        width: 90%;
+        padding: 0.8rem 1rem;
+        bottom: calc(2rem + env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .logo i {
+        font-size: 1.8rem;
+      }
+      
+      .currently-playing {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+      }
+      
+      .current-controls {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo" onclick="window.location.reload()">
+        <i class="fa-solid fa-headphones"></i>
+      </div>
+      <h1>Audio Tourism — Meghalaya</h1>
+      <p class="subtitle">Immerse yourself in the sounds, stories, and spirit of the Abode of Clouds through our curated audio experiences</p>
+      <div class="tagline">
+        <i class="fa-solid fa-waveform-lines"></i> Listen to the soul of Meghalaya
+      </div>
+    </header>
+
+    <section class="audio-grid">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://s7ap1.scene7.com/is/image/incredibleindia/elephant-falls-shillong-meghalaya-hero?qlt=82&ts=1742178199866" alt="Shillong hills and architecture" />
+          <div class="card-overlay">
+            <h3>Shillong</h3>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Known as the Scotland of the East, Shillong offers a unique blend of colonial charm and Khasi culture. Listen to rain songs, bustling markets, and local folklore that bring this hill station to life.</p>
+          <div class="audio-controls">
+            <button class="audio-btn" data-audio="./dawnofchange.mp3" data-title="Shillong" data-image="https://s7ap1.scene7.com/is/image/incredibleindia/elephant-falls-shillong-meghalaya-hero?qlt=82&ts=1742178199866">
+              <i class="fa-solid fa-play"></i> Play Experience
+            </button>
+            <div class="player-info">
+              <i class="fa-solid fa-clock"></i> <span>Duration: 4:32</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://cdn.britannica.com/68/252368-050-C456B7A4/Living-root-bridge-tree-Cherrapunji-Meghalaya-India.jpg" alt="Cherrapunji waterfalls and lush greenery" />
+          <div class="card-overlay">
+            <h3>Cherrapunji</h3>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Walk among the legendary living root bridges and misty hills with nature's eternal melody. Hear the rhythm of waterfalls, whispers of ancient forests, and stories of the world's wettest place.</p>
+          <div class="audio-controls">
+            <button class="audio-btn" data-audio="./dawnofchange.mp3" data-title="Cherrapunji" data-image="https://cdn.britannica.com/68/252368-050-C456B7A4/Living-root-bridge-tree-Cherrapunji-Meghalaya-India.jpg">
+              <i class="fa-solid fa-play"></i> Play Experience
+            </button>
+            <div class="player-info">
+              <i class="fa-solid fa-clock"></i> <span>Duration: 5:15</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://assamholidays.com/wp-content/uploads/2023/06/Umgnot-River-Dawki-1.jpg" alt="Crystal clear waters of Dawki River" />
+          <div class="card-overlay">
+            <h3>Dawki</h3>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Float on the crystal-clear waters of Umngot River — hear the gentle rhythm of paddles, mountain winds, and distant bird calls. Experience the tranquility of this border paradise between India and Bangladesh.</p>
+          <div class="audio-controls">
+            <button class="audio-btn" data-audio="./dawnofchange.mp3" data-title="Dawki" data-image="https://assamholidays.com/wp-content/uploads/2023/06/Umgnot-River-Dawki-1.jpg">
+              <i class="fa-solid fa-play"></i> Play Experience
+            </button>
+            <div class="player-info">
+              <i class="fa-solid fa-clock"></i> <span>Duration: 3:48</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image">
+          <img src="https://hblimg.mmtcdn.com/content/hubble/img/additionalttdimages/mmt/activities/m_Mawlynnong_1_l_435_640.jpg" alt="Mawlynnong village scenery" />
+          <div class="card-overlay">
+            <h3>Mawlynnong</h3>
+          </div>
+        </div>
+        <div class="card-content">
+          <p>Asia's cleanest village offers a symphony of gentle footsteps, rustling bamboo, and community harmony. Listen to the sounds of sustainable living and the peaceful rhythm of village life in perfect balance with nature.</p>
+          <div class="audio-controls">
+            <button class="audio-btn" data-audio="./dawnofchange.mp3" data-title="Mawlynnong" data-image="https://hblimg.mmtcdn.com/content/hubble/img/additionalttdimages/mmt/activities/m_Mawlynnong_1_l_435_640.jpg">
+              <i class="fa-solid fa-play"></i> Play Experience
+            </button>
+            <div class="player-info">
+              <i class="fa-solid fa-clock"></i> <span>Duration: 4:05</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="currently-playing" id="currently-playing">
+    <img id="current-image" src="" alt="">
+    <div class="current-track-info">
+      <h4 id="current-title">Select an audio experience</h4>
+      <p id="current-location">Ready to play</p>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+    <div class="current-controls">
+      <button id="play-pause-btn" aria-label="Play/Pause"><i class="fa-solid fa-play"></i></button>
+      <button id="stop-btn" aria-label="Stop"><i class="fa-solid fa-stop"></i></button>
+      <button id="close-btn" class="close-btn" aria-label="Close player"><i class="fa-solid fa-times"></i></button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>© 2023 Meghalaya Tourism — Experience through Sound & Story</p>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const audioButtons = document.querySelectorAll('.audio-btn');
+    const currentlyPlaying = document.getElementById('currently-playing');
+    const currentImage = document.getElementById('current-image');
+    const currentTitle = document.getElementById('current-title');
+    const currentLocation = document.getElementById('current-location');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const progressBar = document.getElementById('progress-bar');
+
+    let currentAudio = null;
+    let isPlaying = false;
+    let currentButton = null;
+    let progressInterval = null;
+
+    audioButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const audioSrc = this.getAttribute('data-audio');
+        const title = this.getAttribute('data-title');
+        const image = this.getAttribute('data-image');
+
+        // Show loading state
+        this.classList.add('loading');
+        this.innerHTML = 'Loading...';
+
+        // Stop existing audio if any
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          clearInterval(progressInterval);
+        }
+
+        // Reset all buttons
+        audioButtons.forEach(btn => {
+          btn.innerHTML = '<i class="fa-solid fa-play"></i> Play Experience';
+          btn.classList.remove('playing', 'loading');
+        });
+
+        // Create a new audio instance
+        currentAudio = new Audio(audioSrc);
+        currentButton = this;
+
+        progressBar.style.width = '0%';
+        currentlyPlaying.classList.add('active');
+        currentImage.src = image;
+        currentTitle.textContent = title;
+        currentLocation.textContent = 'Loading...';
+
+        // Set up audio event listeners
+        currentAudio.addEventListener('canplaythrough', function() {
+          // Remove loading state
+          if (currentButton) {
+            currentButton.classList.remove('loading');
+            currentButton.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Experience';
+            currentButton.classList.add('playing');
+          }
+          currentLocation.textContent = 'Now Playing';
+        });
+
+        currentAudio.addEventListener('error', function(e) {
+          console.error('Error loading audio:', e);
+          if (currentButton) {
+            currentButton.classList.remove('loading');
+            currentButton.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i> Error Loading';
+          }
+          currentLocation.textContent = 'Error loading audio';
+        });
+
+        currentAudio.addEventListener('ended', stopAudio);
+
+        // Try to play the audio
+        playAudio();
+      });
+    });
+
+    playPauseBtn.addEventListener('click', function() {
+      if (currentAudio) {
+        if (isPlaying) pauseAudio();
+        else playAudio();
+      }
+    });
+
+    stopBtn.addEventListener('click', function() {
+      if (currentAudio) stopAudio();
+    });
+
+    closeBtn.addEventListener('click', function() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentlyPlaying.classList.remove('active');
+      isPlaying = false;
+      clearInterval(progressInterval);
+      
+      // Reset all buttons
+      audioButtons.forEach(btn => {
+        btn.innerHTML = '<i class="fa-solid fa-play"></i> Play Experience';
+        btn.classList.remove('playing', 'loading');
+      });
+    });
+
+    function updateProgress() {
+      if (currentAudio && currentAudio.duration) {
+        const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+    }
+
+    function playAudio() {
+      if (currentAudio) {
+        currentAudio.play().then(() => {
+          isPlaying = true;
+          playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+          progressInterval = setInterval(updateProgress, 100);
+          if (currentButton) {
+            currentButton.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Experience';
+            currentButton.classList.add('playing');
+          }
+        }).catch(err => {
+          console.error('Error playing audio:', err);
+          if (currentButton) {
+            currentButton.classList.remove('loading');
+            currentButton.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i> Playback Error';
+          }
+          currentLocation.textContent = 'Error playing audio';
+        });
+      }
+    }
+
+    function pauseAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        clearInterval(progressInterval);
+        if (currentButton) {
+          currentButton.innerHTML = '<i class="fa-solid fa-play"></i> Play Experience';
+          currentButton.classList.remove('playing');
+        }
+      }
+    }
+
+    function stopAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        isPlaying = false;
+        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        progressBar.style.width = '0%';
+        clearInterval(progressInterval);
+        if (currentButton) {
+          currentButton.innerHTML = '<i class="fa-solid fa-play"></i> Play Experience';
+          currentButton.classList.remove('playing');
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
